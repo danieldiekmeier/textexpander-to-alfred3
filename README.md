@@ -10,7 +10,7 @@ TextExpander uses a `plist` with all the entries in an array, and Alfred uses a 
 
 I recommend you to do
 
-```
+```sh
 npm install -g textexpander-to-alfred3
 ```
 
@@ -22,14 +22,14 @@ You just have to run the program with the `.textexpander` file as the only argum
 
 For example:
 
-```
+```sh
 textexpander-to-alfred3 Signatures.textexpander
 > Wrote file /Users/You/Signatures.alfredsnippets
 ```
 
 You can also use `te2a3` instead with the same result:
 
-```
+```sh
 te2a3 Signatures.textexpander
 > Wrote file /Users/You/Signatures.alfredsnippets
 ```
