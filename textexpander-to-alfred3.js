@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict'
 
 const fs = require('fs')
@@ -8,7 +10,7 @@ const plist = require('plist')
 const program = require('commander')
 
 program
-  .version('0.0.1')
+  .version('0.0.3')
   .usage('<file>')
   .option('<file>', '.textexpander source file')
   .parse(process.argv)

@@ -1,15 +1,15 @@
 {
   "name": "textexpander-to-alfred3",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Convert your TextExpander snippets to Alfred 3 snippets.",
   "main": "textexpander-to-alfred3.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
-    "name" : "Daniel Diekmeier",
-    "email" : "npm@danieldiekmeier.de",
-    "url" : "https://danieldiekmeier.de"
+    "name": "Daniel Diekmeier",
+    "email": "npm@danieldiekmeier.de",
+    "url": "https://danieldiekmeier.de"
   },
   "license": "ISC",
   "bin": {
@@ -18,10 +18,11 @@
   },
   "repository": {
     "type": "git",
-    "url" : "https://github.com/danieldiekmeier/textexpander-to-alfred3"
+    "url": "https://github.com/danieldiekmeier/textexpander-to-alfred3"
   },
   "dependencies": {
     "archiver": "^1.0.0",
+    "commander": "^2.9.0",
     "plist": "^1.2.0",
     "sanitize-filename": "^1.6.0"
   }
