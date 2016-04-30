@@ -18,7 +18,9 @@ But you can, of course, do whatever you want.
 
 ## Usage
 
-You just have to run the program with the `.textexpander` file as the only argument. It will then put a `.alfredsnippets` file in your current working directory.
+First, you'll have to export your TextExpander snippets. To do that, just right click on a snippet folder and select `Save a Copy of Group`.
+
+Then, you just have to run the program with the `.textexpander` file as the only argument. It will then put a `.alfredsnippets` file in your current working directory.
 
 For example:
 
