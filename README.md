@@ -1,7 +1,5 @@
 # TextExpander to Alfred 3
 
-*Note: Alfred 3 is currently in beta. Their format for snippets may change and this program may (temporarily) stop working as a result.*
-
 With [TextExpander](https://smilesoftware.com/textexpander) changing its business model, the new [Alfred](https://www.alfredapp.com/) version supporting text replacement, and the general wish to use the smallest number of different apps, I wrote this script to convert the `.textexpander` files to `.alfredsnippets` files.
 
 TextExpander uses a `plist` with all the entries in an array, and Alfred uses a ZIP file containing a JSON file for each snippet.
