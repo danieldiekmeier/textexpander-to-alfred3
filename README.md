@@ -1,5 +1,11 @@
 # TextExpander to Alfred 3
 
+## This tool is now available as a web app: [alfred.danieldiekmeier.de](http://alfred.danieldiekmeier.de/).
+
+You can, of course, still use the CLI tool, both will give the same result. But the web version will be much quicker, easier and better suited for people unfamiliar with Node.
+
+## Motivation
+
 With [TextExpander](https://smilesoftware.com/textexpander) changing its business model, the new [Alfred](https://www.alfredapp.com/) version supporting text replacement, and the general wish to use the smallest number of different apps, I wrote this script to convert the `.textexpander` files to `.alfredsnippets` files.
 
 TextExpander uses a `plist` with all the entries in an array, and Alfred uses a ZIP file containing a JSON file for each snippet.
