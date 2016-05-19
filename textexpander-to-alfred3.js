@@ -33,7 +33,7 @@ function transformSnippet (snippet) {
     filename: sanitize(snippet.abbreviation.slice(0, 10)) + ' [' + snippet.uuidString + '].json',
     content: JSON.stringify({
       alfredsnippet: {
-        snippet: snippet.plainText,
+        snippet: snippet.plainText.replace(/%clipboard/g, '{clipboard}'),
         name: snippet.abbreviation.slice(0, 10),
         uid: snippet.uuidString,
         keyword: snippet.abbreviation
