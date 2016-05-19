@@ -22,12 +22,6 @@ if (!process.argv.slice(2).length) {
   main()
 }
 
-function readPlist (path, callback) {
-  fs.readFile(path, 'utf-8', (err, data) => {
-    callback(err, plist.parse(data))
-  })
-}
-
 function transformSnippet (snippet) {
   return {
     filename: sanitize(snippet.abbreviation.slice(0, 10)) + ' [' + snippet.uuidString + '].json',
@@ -43,28 +37,44 @@ function transformSnippet (snippet) {
 }
 
 function main () {
-  readPlist(path.join(process.cwd(), program.args[0]), function (err, plist) {
+  let plistPath = program.args[0]
+  if (!path.isAbsolute(plistPath)) {
+    plistPath = path.join(process.cwd(), program.args[0])
+  }
+
+  fs.readFile(plistPath, 'utf-8', function (err, plistString) {
     if (err) { throw err }
-    const outFile = path.join(process.cwd(), (plist.groupInfo.groupName + '.alfredsnippets'))
+
+    const basename = path.basename(program.args[0], '.textexpander')
+    const outFile = path.join(process.cwd(), (basename + '.alfredsnippets'))
 
     const output = fs.createWriteStream(outFile)
-    const archive = archiver('zip')
+    const archive = textexpander2Alfred(plistString)
 
     archive.pipe(output)
 
     output.on('close', function () {
       console.log(`Wrote file ${outFile}`)
     })
-
-    plist.snippetsTE2
-      .map(transformSnippet)
-      .forEach(function (snippet) {
-        archive.append(snippet.content, {
-          name: snippet.filename
-        })
-      })
-
-    archive
-      .finalize()
   })
 }
+
+function textexpander2Alfred (plistString) {
+  const parsedPlist = plist.parse(plistString)
+
+  const archive = archiver('zip')
+
+  parsedPlist.snippetsTE2
+    .map(transformSnippet)
+    .forEach(function (snippet) {
+      archive.append(snippet.content, {
+        name: snippet.filename
+      })
+    })
+
+  archive.finalize()
+
+  return archive
+}
+
+module.exports = textexpander2Alfred
