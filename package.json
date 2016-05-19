@@ -1,6 +1,6 @@
 {
   "name": "textexpander-to-alfred3",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Convert your TextExpander snippets to Alfred 3 snippets.",
   "main": "textexpander-to-alfred3.js",
   "scripts": {
