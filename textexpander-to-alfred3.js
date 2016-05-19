@@ -23,12 +23,13 @@ if (!process.argv.slice(2).length) {
 }
 
 function transformSnippet (snippet) {
+  const name = snippet.label === '' ? snippet.abbreviation.slice(0, 10) : snippet.label
   return {
-    filename: sanitize(snippet.abbreviation.slice(0, 10)) + ' [' + snippet.uuidString + '].json',
+    filename: sanitize(name) + ' [' + snippet.uuidString + '].json',
     content: JSON.stringify({
       alfredsnippet: {
         snippet: snippet.plainText.replace(/%clipboard/g, '{clipboard}'),
-        name: snippet.abbreviation.slice(0, 10),
+        name: name,
         uid: snippet.uuidString,
         keyword: snippet.abbreviation
       }
