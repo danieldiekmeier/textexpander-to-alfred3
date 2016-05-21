@@ -10,7 +10,7 @@ const plist = require('plist')
 const program = require('commander')
 
 program
-  .version('0.1.0')
+  .version('0.1.1')
   .usage('<file>')
   .option('<file>', '.textexpander source file')
   .parse(process.argv)
@@ -24,11 +24,13 @@ if (!process.argv.slice(2).length) {
 
 function transformSnippet (snippet) {
   const name = snippet.label === '' ? snippet.abbreviation.slice(0, 10) : snippet.label
+
   return {
     filename: sanitize(name) + ' [' + snippet.uuidString + '].json',
+    usable: Boolean(snippet.plainText),
     content: JSON.stringify({
       alfredsnippet: {
-        snippet: snippet.plainText.replace(/%clipboard/g, '{clipboard}'),
+        snippet: snippet.plainText ? snippet.plainText.replace(/%clipboard/g, '{clipboard}') : false,
         name: name,
         uid: snippet.uuidString,
         keyword: snippet.abbreviation
@@ -67,6 +69,9 @@ function textexpander2Alfred (plistString) {
 
   parsedPlist.snippetsTE2
     .map(transformSnippet)
+    .filter((snippet) => {
+      return snippet.usable
+    })
     .forEach(function (snippet) {
       archive.append(snippet.content, {
         name: snippet.filename
