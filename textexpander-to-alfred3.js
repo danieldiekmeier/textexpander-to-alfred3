@@ -10,7 +10,7 @@ const plist = require('plist')
 const program = require('commander')
 
 program
-  .version('0.1.1')
+  .version('0.1.2')
   .usage('<file>')
   .option('<file>', '.textexpander source file')
   .parse(process.argv)
@@ -23,7 +23,7 @@ if (!process.argv.slice(2).length) {
 }
 
 function transformSnippet (snippet) {
-  const name = snippet.label === '' ? snippet.abbreviation.slice(0, 10) : snippet.label
+  const name = !snippet.label || snippet.label === '' ? snippet.abbreviation.slice(0, 10) : snippet.label
 
   return {
     filename: sanitize(name) + ' [' + snippet.uuidString + '].json',
