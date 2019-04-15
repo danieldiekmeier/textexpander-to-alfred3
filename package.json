@@ -3,9 +3,7 @@
   "version": "0.1.1",
   "description": "Convert your TextExpander snippets to Alfred 3 snippets.",
   "main": "textexpander-to-alfred3.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "author": {
     "name": "Daniel Diekmeier",
     "email": "npm@danieldiekmeier.de",
