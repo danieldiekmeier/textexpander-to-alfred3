@@ -67,7 +67,13 @@ function textexpander2Alfred (plistString) {
 
   const archive = archiver('zip')
 
-  parsedPlist.snippetsTE2
+  // Use the TextExpander 3 snippet collection, if available.
+  // The `snippetsTE2` key is included in the v3 snippet plist file
+  // with a warning message in case someone using TextExpande v2 tries
+  // to import a v3 snippet file.
+  const snippets = parsedPlist.snippetsTE3 || parsedPlist.snippetsTE2
+
+  snippets
     .map(transformSnippet)
     .filter((snippet) => {
       return snippet.usable
