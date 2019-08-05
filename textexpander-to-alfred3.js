@@ -24,32 +24,7 @@ if (!process.argv.slice(2).length) {
 
 function transformSnippet (snippet) {
   const name = !snippet.label || snippet.label === '' ? snippet.abbreviation.slice(0, 10) : snippet.label
-
-  // First, look for the plain-text snippet.
   let snippetText = snippet.plainText || false;
-
-  // If no plain-text version exists, attempt to rescue snippet text from TextExpander's serialized JSON.
-  if (snippet.extraInfo.jsonStr) {
-    let snippetJSON = JSON.parse(snippet.extraInfo.jsonStr);
-    snippetJSON.nodes.forEach(node => {
-      // Plain text.
-      if (node.e === 'tx') {
-        snippetText += node.tx
-      }
-      // Line break.
-      if (node.e === 'br') {
-        snippetText += '\n';
-      }
-      // Cursor position
-      if (node.e === 'mark-cursor-position') {
-        snippetText += '{cursor}';
-      }
-      // Line break.
-      if (node.e === 'macro-pasteboard') {
-        snippetText += '{clipboard}';
-      }
-    });
-  }
 
   // Replace TextExpander tokens with Alfred tokens.
   snippetText = snippetText.replace(/%clipboard/g, '{clipboard}').replace(/%\|/g, '{cursor}')
