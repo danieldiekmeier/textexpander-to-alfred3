@@ -69,7 +69,7 @@ function textexpander2Alfred (plistString) {
 
   // Use the TextExpander 3 snippet collection, if available.
   // The `snippetsTE2` key is included in the v3 snippet plist file
-  // with a warning message in case someone using TextExpande v2 tries
+  // with a warning message in case someone using TextExpander v2 tries
   // to import a v3 snippet file.
   const snippets = parsedPlist.snippetsTE3 || parsedPlist.snippetsTE2
 
