@@ -24,17 +24,13 @@ if (!process.argv.slice(2).length) {
 
 function transformSnippet (snippet) {
   const name = !snippet.label || snippet.label === '' ? snippet.abbreviation.slice(0, 10) : snippet.label
-  let snippetText = snippet.plainText || false;
 
-  // Replace TextExpander tokens with Alfred tokens.
-  snippetText = snippetText.replace(/%clipboard/g, '{clipboard}').replace(/%\|/g, '{cursor}')
-  
   return {
     filename: sanitize(name) + ' [' + snippet.uuidString + '].json',
-    usable: Boolean(snippetText),
+    usable: Boolean(snippet.plainText),
     content: JSON.stringify({
       alfredsnippet: {
-        snippet: snippetText
+        snippet: snippet.plainText.replace(/%clipboard/g, '{clipboard}').replace(/%\|/g, '{cursor}'),
         name: name,
         uid: snippet.uuidString,
         keyword: snippet.abbreviation
