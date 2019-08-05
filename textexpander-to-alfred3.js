@@ -30,7 +30,7 @@ function transformSnippet (snippet) {
     usable: Boolean(snippet.plainText),
     content: JSON.stringify({
       alfredsnippet: {
-        snippet: snippet.plainText ? snippet.plainText.replace(/%clipboard/g, '{clipboard}') : false,
+        snippet: snippet.plainText ? snippet.plainText.replace(/%clipboard/g, '{clipboard}').replace(/%\|/g, '{cursor}') : false,
         name: name,
         uid: snippet.uuidString,
         keyword: snippet.abbreviation
