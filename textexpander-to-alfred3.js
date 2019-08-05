@@ -25,12 +25,21 @@ if (!process.argv.slice(2).length) {
 function transformSnippet (snippet) {
   const name = !snippet.label || snippet.label === '' ? snippet.abbreviation.slice(0, 10) : snippet.label
 
+  // First, look for the plain-text snippet.
+  let snippetText = snippet.plainText || false;
+
+  // If no plain-text version exists, attempt to rescue snippet text from TextExpander's serialized JSON.
+  snippetText = JSON.parse(snippet.extraInfo.jsonStr).nodes[0].tx || snippetText;
+
+  // Replace TextExpander tokens with Alfred tokens.
+  snippetText = snippetText.replace(/%clipboard/g, '{clipboard}').replace(/%\|/g, '{cursor}')
+  
   return {
     filename: sanitize(name) + ' [' + snippet.uuidString + '].json',
-    usable: Boolean(snippet.plainText),
+    usable: Boolean(snippetText),
     content: JSON.stringify({
       alfredsnippet: {
-        snippet: snippet.plainText ? snippet.plainText.replace(/%clipboard/g, '{clipboard}').replace(/%\|/g, '{cursor}') : false,
+        snippet: snippetText
         name: name,
         uid: snippet.uuidString,
         keyword: snippet.abbreviation
