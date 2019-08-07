@@ -39,3 +39,5 @@ You can also use `te2a3` instead with the same result:
 te2a3 Signatures.textexpander
 > Wrote file /Users/You/Signatures.alfredsnippets
 ```
+
+__NOTE__: For some reason, TextExpander v3 does not export a snippet group's group-level prefix, so you will have to re-do that in Alfred once you import it.
