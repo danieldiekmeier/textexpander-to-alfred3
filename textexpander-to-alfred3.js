@@ -30,7 +30,7 @@ function transformSnippet (snippet) {
     usable: Boolean(snippet.plainText),
     content: JSON.stringify({
       alfredsnippet: {
-        snippet: snippet.plainText ? snippet.plainText.replace(/%clipboard/g, '{clipboard}') : false,
+        snippet: snippet.plainText ? snippet.plainText.replace(/%clipboard/g, '{clipboard}').replace(/%\|/g, '{cursor}') : false,
         name: name,
         uid: snippet.uuidString,
         keyword: snippet.abbreviation
@@ -67,7 +67,13 @@ function textexpander2Alfred (plistString) {
 
   const archive = archiver('zip')
 
-  parsedPlist.snippetsTE2
+  // Use the TextExpander 3 snippet collection, if available.
+  // The `snippetsTE2` key is included in the v3 snippet plist file
+  // with a warning message in case someone using TextExpander v2 tries
+  // to import a v3 snippet file.
+  const snippets = parsedPlist.snippetsTE3 || parsedPlist.snippetsTE2
+
+  snippets
     .map(transformSnippet)
     .filter((snippet) => {
       return snippet.usable
