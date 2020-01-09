@@ -1,8 +1,8 @@
 # TextExpander to Alfred 3
 
-## This tool is now available as a web app: [alfred.danieldiekmeier.de](http://alfred.danieldiekmeier.de/).
+**Heads up**: I programmed this in April 2016. I then converted all my snippets, so I haven't needed this tool since. In the last years, both TextExpander and Alfred have released several new major versions, which may or may not work with this tool (Judging by the support requests I get, they don't!)
 
-You can, of course, still use the CLI tool, both will give the same result. But the web version will be much quicker, easier and better suited for people unfamiliar with Node.
+If this tool does not work, I can't help you. If you know Node.js, you may be able to fix it yourself and send a Pull Request to my respository. I will probably accept it!
 
 ## Motivation
 
