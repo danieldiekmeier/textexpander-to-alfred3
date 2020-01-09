@@ -1,6 +1,6 @@
 # TextExpander to Alfred 3
 
-**Heads up**: I programmed this in April 2016. I then converted all my snippets, so I haven't needed this tool since. In the last years, both TextExpander and Alfred have released several new major versions, which may or may not work with this tool (Judging by the support requests I get, they don't!)
+**⚠️ Heads up ⚠️**: I programmed this in April 2016. I then converted all my snippets, so I haven't needed this tool since. In the last years, both TextExpander and Alfred have released several new major versions, which may or may not work with this tool (Judging by the support requests I get, they don't!)
 
 If this tool does not work, I can't help you. If you know Node.js, you may be able to fix it yourself and send a Pull Request to my respository. I will probably accept it!
 
